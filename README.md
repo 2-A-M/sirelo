@@ -124,7 +124,7 @@ php artisan serve
 
 ## 👨‍💻 Desenvolvido por
 
-[Seu Nome](https://github.com/seu-usuario) - Desenvolvedor Full Stack
+[Arthur Acha](https://github.com/2-A-M) - Desenvolvedor Full Stack
 
 ## 📄 Licença
 
