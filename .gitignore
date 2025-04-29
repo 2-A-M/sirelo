@@ -1,0 +1,54 @@
+# Dependências
+node_modules
+vendor
+
+# Arquivos de build
+/dist
+/build
+/public/build
+/public/hot
+/public/storage
+
+# Arquivos de ambiente
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.backup
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+*.log
+
+# Cache
+.phpunit.result.cache
+
+# Editores/IDEs
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+
+# Arquivos temporários
+/storage/*.key
+/storage/logs
+/storage/framework/cache
+/storage/framework/sessions
+/storage/framework/views
+/storage/app/public
+
+# Cypress
+/cypress/videos
+/cypress/screenshots
+
+# Outros
+/.phpunit.cache
+.cursor
