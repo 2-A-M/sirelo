@@ -93,35 +93,6 @@ php artisan serve
 3. Explore as funcionalidades de gerenciamento de usuário
 4. Teste a recuperação de senha enviando um e-mail
 
-## 🚀 Deploy
-
-### Frontend (Vercel)
-
-1. Crie uma conta na [Vercel](https://vercel.com/)
-2. Conecte seu repositório GitHub
-3. Configure:
-   - Framework Preset: Vite
-   - Build Command: `npm run build`
-   - Output Directory: `dist`
-4. Adicione variável de ambiente:
-   - `VITE_API_URL`: URL do seu backend no Railway
-
-### Backend (Railway)
-
-1. Crie uma conta no [Railway](https://railway.app/)
-2. Inicie um novo projeto a partir do GitHub
-3. Configure o diretório do projeto para `backend`
-4. Adicione um serviço MySQL
-5. Configure variáveis de ambiente:
-   - `APP_KEY`: Execute `php artisan key:generate --show` localmente
-   - `APP_ENV`: production
-   - `DB_CONNECTION`: mysql
-   - Outras variáveis de conexão com banco de dados
-6. Configure o comando inicial: 
-   ```
-   php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT
-   ```
-
 ## 👨‍💻 Desenvolvido por
 
 [Arthur Acha](https://github.com/2-A-M) - Desenvolvedor Full Stack
