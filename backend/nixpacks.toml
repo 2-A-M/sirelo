@@ -3,7 +3,6 @@ nixpkgs = ["php82", "php82Packages.composer", "postgresql"]
 
 [phases.install]
 cmds = [
-  "cd backend",
   "composer install --optimize-autoloader --no-dev"
 ]
 
