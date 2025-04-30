@@ -1,0 +1,47 @@
+FROM php:8.2-fpm
+
+WORKDIR /var/www/html
+
+# Instalar dependências
+RUN apt-get update && apt-get install -y \
+    libpq-dev \
+    libzip-dev \
+    zip \
+    unzip \
+    git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev
+
+# Instalar extensões PHP
+RUN docker-php-ext-install pdo pdo_pgsql zip mbstring exif pcntl bcmath gd
+
+# Instalar e configurar Apache
+RUN apt-get install -y apache2 && a2enmod rewrite
+COPY backend/000-default.conf /etc/apache2/sites-available/000-default.conf
+
+# Instalar Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Copiar aplicação
+COPY backend/ /var/www/html/
+
+# Instalar dependências do Composer
+RUN composer install --optimize-autoloader --no-dev
+
+# Ajustar permissões
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+
+# Limpar cache
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Porta de exposição
+EXPOSE 8080
+
+# Configurar entrada
+COPY backend/docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8080"] 
