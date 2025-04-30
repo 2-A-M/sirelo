@@ -69,13 +69,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     try {
       setLoading(true);
       setError(null);
-      const { user: userData, token } = await authService.login(email, password);
+      const { user: userData, access_token } = await authService.login(email, password);
       
       // Salvar token dependendo da opção "lembrar-me"
       if (remember) {
-        localStorage.setItem('auth_token', token);
+        localStorage.setItem('auth_token', access_token);
       } else {
-        sessionStorage.setItem('auth_token', token);
+        sessionStorage.setItem('auth_token', access_token);
       }
       
       setUser(userData);
@@ -95,9 +95,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     try {
       setLoading(true);
       setError(null);
-      const { user: userData, token } = await authService.register(name, email, password, passwordConfirmation);
+      const { user: userData, access_token } = await authService.register(name, email, password, passwordConfirmation);
       
-      localStorage.setItem('auth_token', token);
+      localStorage.setItem('auth_token', access_token);
       setUser(userData);
       setIsAuthenticated(true);
       toast.success("Seja bem-vindo!");

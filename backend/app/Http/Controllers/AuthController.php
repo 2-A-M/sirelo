@@ -7,30 +7,62 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Log;
+use Exception;
 
 class AuthController extends Controller
 {
     public function register(Request $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'], // confirmed busca por password_confirmation
-        ]);
+        try {
+            Log::info('Registration attempt', ['request' => $request->all()]);
+            
+            $validated = $request->validate([
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'], // confirmed busca por password_confirmation
+            ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+            Log::info('Validation passed', ['validated' => $validated]);
+            
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
 
-        // Opcional: Logar o usuário imediatamente após o registro
-        // Auth::login($user);
-        // $token = $request->user()->createToken('auth_token')->plainTextToken;
-        // return response()->json(['access_token' => $token, 'token_type' => 'Bearer', 'user' => $user]);
+            Log::info('User created successfully', ['user_id' => $user->id]);
 
-        // Ou apenas retornar sucesso
-        return response()->json(['message' => 'Usuário registrado com sucesso!'], 201);
+            // Logar o usuário imediatamente após o registro
+            Auth::login($user);
+            $token = $user->createToken('auth_token')->plainTextToken;
+            
+            return response()->json([
+                'message' => 'Usuário registrado com sucesso!',
+                'user' => $user,
+                'access_token' => $token,
+                'token_type' => 'Bearer'
+            ], 201);
+        } catch (ValidationException $e) {
+            Log::error('Validation error during registration', [
+                'errors' => $e->errors(),
+                'request' => $request->all()
+            ]);
+            return response()->json([
+                'message' => 'Erro de validação',
+                'errors' => $e->errors()
+            ], 422);
+        } catch (Exception $e) {
+            Log::error('Error during registration', [
+                'exception' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+                'request' => $request->all()
+            ]);
+            return response()->json([
+                'message' => 'Ocorreu um erro durante o registro.',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 
     public function login(Request $request)
