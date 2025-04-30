@@ -1,8 +1,7 @@
-# Sistema de Autenticação Completo
+# Sistema de Registro e Login
 
 Um sistema completo de autenticação e registro de usuários, desenvolvido com React, TypeScript e Laravel.
 
-![Captura de tela do projeto](https://via.placeholder.com/800x400)
 
 ## 🚀 Funcionalidades
 
