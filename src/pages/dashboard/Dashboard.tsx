@@ -6,7 +6,7 @@ import Button from '../../components/ui/Button';
 import Footer from '../../components/layout/Footer';
 
 const welcomeMessages = [
-  "Opa, bão? Se você está lendo isso, quer dizer que o app não quebrou! (ainda)",
+  "Opa, tudo certin? Se você está lendo isso, o app (ainda) não quebrou!",
 ];
 
 const Dashboard = () => {
