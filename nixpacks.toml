@@ -1,0 +1,20 @@
+[phases.setup]
+nixpkgs = ["php82", "php82Packages.composer", "postgresql"]
+
+[phases.install]
+cmds = [
+  "cd backend",
+  "composer install --optimize-autoloader --no-dev"
+]
+
+[phases.build]
+cmds = [
+  "cd backend",
+  "php artisan config:cache",
+  "php artisan route:cache",
+  "php artisan view:cache",
+  "chmod -R 777 storage bootstrap/cache"
+]
+
+[start]
+cmd = "cd backend && php artisan serve --host=0.0.0.0 --port=8080" 
