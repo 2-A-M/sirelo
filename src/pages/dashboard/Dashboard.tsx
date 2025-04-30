@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { LogOut, User, Moon, Sun } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
@@ -11,18 +11,28 @@ const welcomeMessages = [
 
 const Dashboard = () => {
   const { user, logout } = useAuth();
-  const [darkMode, setDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
+  
+  // Verifica o tema atual ao carregar o componente
+  useEffect(() => {
+    setIsDarkMode(document.documentElement.classList.contains('dark'));
+  }, []);
   
   // Pega uma mensagem aleatória de boas-vindas
   const welcomeMessage = welcomeMessages[Math.floor(Math.random() * welcomeMessages.length)];
 
   const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    // Numa aplicação real, você adicionaria/removeria uma classe ao elemento raiz ou usaria um contexto de tema
+    if (document.documentElement.classList.contains('dark')) {
+      document.documentElement.classList.remove('dark');
+      setIsDarkMode(false);
+    } else {
+      document.documentElement.classList.add('dark');
+      setIsDarkMode(true);
+    }
   };
 
   return (
-    <div className={`min-h-screen flex flex-col ${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'}`}>
+    <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white">
       {/* Cabeçalho */}
       <header className="bg-white dark:bg-gray-800 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -38,7 +48,7 @@ const Dashboard = () => {
                 onClick={toggleDarkMode}
                 className="p-2 rounded-full text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white focus:outline-none"
               >
-                {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
               </button>
               
               <div className="ml-3 relative">

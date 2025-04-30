@@ -11,7 +11,7 @@ interface AuthLayoutProps {
 
 const AuthLayout = ({ children, title, subtitle }: AuthLayoutProps) => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex flex-col justify-between p-4">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 flex flex-col justify-between p-4">
       <div className="flex-grow flex items-center justify-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
@@ -36,8 +36,8 @@ const AuthLayout = ({ children, title, subtitle }: AuthLayoutProps) => {
             transition={{ delay: 0.1, duration: 0.4 }}
             className="text-center mb-8"
           >
-            <h1 className="text-3xl font-bold text-gray-900">{title}</h1>
-            {subtitle && <p className="mt-2 text-gray-600">{subtitle}</p>}
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{title}</h1>
+            {subtitle && <p className="mt-2 text-gray-600 dark:text-gray-300">{subtitle}</p>}
           </motion.div>
 
           <motion.div
