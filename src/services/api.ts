@@ -1,7 +1,8 @@
 import axios from 'axios';
 
-// Define a URL base da API - substitua pela URL real da sua API Laravel
-export const API_URL = 'http://localhost:8000/api';
+// Define a URL base da API usando variáveis de ambiente
+const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
+export const API_URL = apiBaseUrl;
 
 // Cria uma instância do axios
 const api = axios.create({
@@ -10,6 +11,7 @@ const api = axios.create({
     'Content-Type': 'application/json',
     'Accept': 'application/json',
   },
+  withCredentials: true, // Importante para autenticação cross-domain
 });
 
 // Interceptor de requisição para adicionar o token de autenticação
