@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
+use PDOException;
 use Exception;
 
 class AuthController extends Controller
@@ -15,7 +17,30 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         try {
+            // Log database connection details (without password)
+            Log::info('Database connection info', [
+                'host' => config('database.connections.pgsql.host'),
+                'port' => config('database.connections.pgsql.port'),
+                'database' => config('database.connections.pgsql.database'),
+                'username' => config('database.connections.pgsql.username')
+            ]);
+            
             Log::info('Registration attempt', ['request' => $request->all()]);
+            
+            // Test database connection
+            try {
+                DB::connection()->getPdo();
+                Log::info('Database connection successful');
+            } catch (PDOException $e) {
+                Log::error('Database connection failed', [
+                    'exception' => $e->getMessage(),
+                    'code' => $e->getCode()
+                ]);
+                return response()->json([
+                    'message' => 'Erro de conexão com o banco de dados. Por favor, tente novamente mais tarde.',
+                    'error' => $e->getMessage()
+                ], 500);
+            }
             
             $validated = $request->validate([
                 'name' => ['required', 'string', 'max:255'],
@@ -52,6 +77,17 @@ class AuthController extends Controller
                 'message' => 'Erro de validação',
                 'errors' => $e->errors()
             ], 422);
+        } catch (PDOException $e) {
+            Log::error('Database error during registration', [
+                'exception' => $e->getMessage(),
+                'code' => $e->getCode(),
+                'trace' => $e->getTraceAsString(),
+                'request' => $request->all()
+            ]);
+            return response()->json([
+                'message' => 'Erro de banco de dados durante o registro.',
+                'error' => $e->getMessage()
+            ], 500);
         } catch (Exception $e) {
             Log::error('Error during registration', [
                 'exception' => $e->getMessage(),
