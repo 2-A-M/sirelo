@@ -3,6 +3,37 @@ builder = "nixpacks"
 buildCommand = "composer install --optimize-autoloader --no-dev"
 
 [deploy]
+<<<<<<< Updated upstream
 startCommand = "cp .env.railway .env && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT"
+=======
+startCommand = "php artisan config:clear && php artisan cache:clear && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT"
+>>>>>>> Stashed changes
 restartPolicyType = "ON_FAILURE"
-restartPolicyMaxRetries = 10 
+restartPolicyMaxRetries = 10
+
+[variables]
+APP_NAME = "Sistema de Registro e Login"
+APP_ENV = "production"
+APP_KEY = "base64:JdCU39cDC0y9aBffmJNwBlXgbITIQIQbCYwAdzVyQEY="
+APP_DEBUG = "true"
+APP_URL = "https://back-production-1952.up.railway.app"
+LOG_CHANNEL = "stderr"
+LOG_LEVEL = "debug"
+BROADCAST_DRIVER = "log"
+CACHE_DRIVER = "file"
+FILESYSTEM_DISK = "local"
+QUEUE_CONNECTION = "sync"
+SESSION_DRIVER = "cookie"
+SESSION_LIFETIME = "120"
+SESSION_DOMAIN = ".up.railway.app"
+SESSION_SECURE_COOKIE = "true"
+MAIL_MAILER = "smtp"
+MAIL_HOST = "smtp.gmail.com"
+MAIL_PORT = "587"
+MAIL_USERNAME = "0.0.0.0.0.0.0.0.2.a.m@gmail.com"
+MAIL_PASSWORD = "vpinkwrvdzdzoquy"
+MAIL_ENCRYPTION = "tls"
+MAIL_FROM_ADDRESS = "0.0.0.0.0.0.0.0.2.a.m@gmail.com"
+MAIL_FROM_NAME = "Arthur Acha"
+SANCTUM_STATEFUL_DOMAINS = "front-production-2f2b.up.railway.app"
+CORS_ALLOWED_ORIGINS = "https://front-production-2f2b.up.railway.app" 
