@@ -57,7 +57,7 @@ class ResetPasswordNotification extends Notification
     public function toMail($notifiable)
     {
         // Obtém a URL base do frontend a partir das configurações
-        $frontendUrl = Config::get('frontend.url', 'http://localhost:5173');
+        $frontendUrl = Config::get('frontend.url', 'https://front-production-2f2b.up.railway.app');
         
         // Obtém o caminho da rota de redefinição de senha
         $resetPasswordRoute = Config::get('frontend.routes.reset_password', '/reset-password/');
