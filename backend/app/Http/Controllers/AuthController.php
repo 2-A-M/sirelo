@@ -111,7 +111,7 @@ class AuthController extends Controller
         if (!Auth::attempt($request->only('email', 'password')))
         {
             throw ValidationException::withMessages([
-                'email' => [__('auth.failed')], // Mensagem de erro padrão do Laravel
+                'email' => [__('Verifique suas credenciais e tente novamente.')], // Mensagem de erro padrão do Laravel
             ]);
         }
 
