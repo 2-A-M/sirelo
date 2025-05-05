@@ -27,7 +27,7 @@ export default function LanguageSwitcher() {
           className={`flex items-center px-2 py-1 rounded text-sm ${
             i18n.language === lang.code 
               ? 'bg-blue-600 text-white' 
-              : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200'
+              : 'bg-gray-700 text-gray-200'
           }`}
         >
           <span className="mr-1">{lang.flag}</span>

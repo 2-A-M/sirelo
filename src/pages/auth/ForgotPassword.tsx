@@ -109,7 +109,7 @@ const ForgotPassword = () => {
           <div className="mt-6 flex justify-center">
             <Link
               to="/login"
-              className="flex items-center text-sm font-medium text-gray-600 hover:text-gray-800"
+              className="flex items-center text-sm font-medium text-blue-600 hover:text-blue-800"
             >
               <ArrowLeft className="h-4 w-4 mr-1" />
               {t('auth.backToLogin')}
