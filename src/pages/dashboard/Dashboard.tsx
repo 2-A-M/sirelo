@@ -1,26 +1,21 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { LogOut, User, Moon, Sun } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../context/AuthContext';
 import Button from '../../components/ui/Button';
 import Footer from '../../components/layout/Footer';
 
-const welcomeMessages = [
-  "Opa, tudo certin? Se você está lendo isso, o app (ainda) não quebrou!",
-];
-
 const Dashboard = () => {
   const { user, logout } = useAuth();
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const { t } = useTranslation();
   
   // Verifica o tema atual ao carregar o componente
   useEffect(() => {
     setIsDarkMode(document.documentElement.classList.contains('dark'));
   }, []);
   
-  // Pega uma mensagem aleatória de boas-vindas
-  const welcomeMessage = welcomeMessages[Math.floor(Math.random() * welcomeMessages.length)];
-
   const toggleDarkMode = () => {
     if (document.documentElement.classList.contains('dark')) {
       document.documentElement.classList.remove('dark');
@@ -40,13 +35,14 @@ const Dashboard = () => {
             <div className="flex items-center">
               <div className="flex-shrink-0 flex items-center">
                 <div className="h-8 w-8 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600"></div>
-                <span className="ml-2 text-xl font-bold">Sistema de Registro e Login</span>
+                <span className="ml-2 text-xl font-bold">{t('dashboard.systemTitle')}</span>
               </div>
             </div>
             <div className="flex items-center space-x-4">
               <button
                 onClick={toggleDarkMode}
                 className="p-2 rounded-full text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white focus:outline-none"
+                title={isDarkMode ? t('dashboard.lightMode') : t('dashboard.darkMode')}
               >
                 {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
               </button>
@@ -71,19 +67,20 @@ const Dashboard = () => {
         >
           <div className="p-6">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Dashboard</h1>
+              <div className="max-w-3xl">
+                <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{t('dashboard.title')}</h1>
                 <p className="mt-1 text-gray-600 dark:text-gray-300">
-                  {welcomeMessage}
+                  {t('dashboard.welcomeMessage')}
                 </p>
               </div>
-              <div className="mt-4 md:mt-0">
+              <div className="mt-6 md:mt-0 md:ml-8">
                 <Button
                   variant="outline"
-                  icon={<LogOut className="h-4 w-4" />}
                   onClick={logout}
+                  className="p-2"
+                  title={t('dashboard.logout')}
                 >
-                  Sair
+                  <LogOut className="h-5 w-5" />
                 </Button>
               </div>
             </div>
@@ -96,20 +93,20 @@ const Dashboard = () => {
                   </div>
                   <div className="ml-4">
                     <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
-                      Informações do usuário
+                      {t('dashboard.userInfo')}
                     </h2>
                     <p className="text-gray-600 dark:text-gray-300">
-                      Seu perfil
+                      {t('dashboard.profile')}
                     </p>
                   </div>
                 </div>
                 <div className="mt-6 grid gap-6 md:grid-cols-2">
                   <div className="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-sm">
-                    <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Nome</h3>
+                    <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">{t('dashboard.name')}</h3>
                     <p className="mt-1 text-lg font-semibold">{user?.name || 'Nome do usuário'}</p>
                   </div>
                   <div className="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-sm">
-                    <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">E-mail</h3>
+                    <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">{t('dashboard.email')}</h3>
                     <p className="mt-1 text-lg font-semibold">{user?.email || 'email@exemplo.com'}</p>
                   </div>
                 </div>

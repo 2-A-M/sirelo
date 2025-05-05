@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 import { authService } from '../services/auth.service';
 import { User } from '../types/user';
 
@@ -38,6 +39,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [error, setError] = useState<string | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
 
   // Verificar se o usuário já está autenticado ao iniciar
   useEffect(() => {
@@ -80,11 +82,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       
       setUser(userData);
       setIsAuthenticated(true);
-      toast.success("Login realizado com sucesso!");
+      toast.success(t('auth.loginSuccess', 'Login realizado com sucesso!'));
       navigate('/dashboard');
     } catch (err: any) {
-      setError(err.message || 'Falha ao fazer login. Por favor, tente novamente.');
-      toast.error(err.message || 'Falha ao fazer login. Por favor, tente novamente.');
+      setError(err.message || t('auth.loginError', 'Falha ao fazer login. Por favor, tente novamente.'));
+      toast.error(err.message || t('auth.loginError', 'Falha ao fazer login. Por favor, tente novamente.'));
     } finally {
       setLoading(false);
     }
@@ -100,11 +102,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       localStorage.setItem('auth_token', access_token);
       setUser(userData);
       setIsAuthenticated(true);
-      toast.success("Seja bem-vindo!");
+      toast.success(t('auth.registerSuccess', 'Seja bem-vindo!'));
       navigate('/dashboard');
     } catch (err: any) {
-      setError(err.message || 'Falha ao registrar. Por favor, tente novamente.');
-      toast.error(err.message || 'Falha ao registrar. Por favor, tente novamente.');
+      setError(err.message || t('auth.registerError', 'Falha ao registrar. Por favor, tente novamente.'));
+      toast.error(err.message || t('auth.registerError', 'Falha ao registrar. Por favor, tente novamente.'));
     } finally {
       setLoading(false);
     }
@@ -120,25 +122,32 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       sessionStorage.removeItem('auth_token');
       setUser(null);
       setIsAuthenticated(false);
-      toast.success("Até já!");
+      toast.success(t('auth.logoutSuccess', 'Até já!'));
       navigate('/login');
     } catch (err: any) {
-      toast.error(err.message || 'Erro ao sair. Por favor, tente novamente.');
+      toast.error(err.message || t('auth.logoutError', 'Erro ao sair. Por favor, tente novamente.'));
     } finally {
       setLoading(false);
     }
   };
 
-  // Solicitar reset de senha
+  // Solicitar reset de senha com mensagem baseada no idioma
   const forgotPassword = async (email: string) => {
     try {
       setLoading(true);
       setError(null);
-      await authService.forgotPassword(email);
-      toast.success("E-mail de recuperação enviado com sucesso! Só checar seu inbox que você receberá um e-mail com as instruções para redefinir sua senha.");
+      // Pass the current language to the API if your backend supports it
+      await authService.forgotPassword(email, i18n.language);
+      toast.success(t('auth.forgotPasswordSuccess', 'E-mail de recuperação enviado com sucesso! Só checar seu inbox que você receberá um e-mail com as instruções para redefinir sua senha.'));
     } catch (err: any) {
-      setError(err.message || 'Erro ao enviar e-mail de recuperação.');
-      toast.error(err.message || 'Erro ao enviar e-mail de recuperação.');
+      // Extract error message
+      const errorMessage = err.message || t('auth.forgotPasswordError', 'Erro ao enviar e-mail de recuperação.');
+      
+      // Set error in state for display in component
+      setError(errorMessage);
+      
+      // Show toast error notification
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -150,11 +159,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       setLoading(true);
       setError(null);
       await authService.resetPassword(token, email, password, passwordConfirmation);
-      toast.success("Senha redefinida com sucesso! Faça login com sua nova senha.");
+      toast.success(t('auth.resetPasswordSuccess', 'Senha redefinida com sucesso! Faça login com sua nova senha.'));
       navigate('/login');
     } catch (err: any) {
-      setError(err.message || 'Erro ao redefinir a senha.');
-      toast.error(err.message || 'Erro ao redefinir a senha.');
+      setError(err.message || t('auth.resetPasswordError', 'Erro ao redefinir a senha.'));
+      toast.error(err.message || t('auth.resetPasswordError', 'Erro ao redefinir a senha.'));
     } finally {
       setLoading(false);
     }
