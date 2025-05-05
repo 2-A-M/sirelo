@@ -62,6 +62,60 @@
     "darkMode": "Modo Escuro",
     "lightMode": "Modo Claro"
   },
+  "techStack": {
+    "title": "Explorador de Tecnologias",
+    "subtitle": "Descubra as tecnologias que impulsionam esta aplicação",
+    "viewButton": "Tech Stack Utilizada",
+    "categories": {
+      "all": "Todas",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "database": "Banco de Dados",
+      "tools": "Ferramentas"
+    },
+    "technologies": {
+      "react": {
+        "name": "React",
+        "description": "Uma biblioteca JavaScript para construir interfaces de usuário"
+      },
+      "typescript": {
+        "name": "TypeScript",
+        "description": "Linguagem de programação fortemente tipada baseada em JavaScript"
+      },
+      "tailwind": {
+        "name": "Tailwind CSS",
+        "description": "Um framework CSS utilitário para desenvolvimento rápido de UI"
+      },
+      "framerMotion": {
+        "name": "Framer Motion",
+        "description": "Uma biblioteca de animação pronta para produção para React"
+      },
+      "reactRouter": {
+        "name": "React Router",
+        "description": "Roteamento declarativo para aplicações React"
+      },
+      "laravel": {
+        "name": "Laravel",
+        "description": "Framework PHP para aplicações web com sintaxe expressiva e elegante"
+      },
+      "php": {
+        "name": "PHP",
+        "description": "Linguagem de script popular para desenvolvimento web"
+      },
+      "postgresql": {
+        "name": "PostgreSQL",
+        "description": "Sistema de banco de dados relacional de objetos poderoso e de código aberto"
+      },
+      "vite": {
+        "name": "Vite",
+        "description": "Ferramentas de frontend de última geração"
+      },
+      "i18next": {
+        "name": "i18next",
+        "description": "Framework de internacionalização para JavaScript"
+      }
+    }
+  },
   "common": {
     "submit": "Enviar",
     "cancel": "Cancelar",

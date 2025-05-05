@@ -11,6 +11,7 @@ import AuthLayout from '../../components/layout/AuthLayout';
 import Input from '../../components/ui/Input';
 import Button from '../../components/ui/Button';
 import { useAuth } from '../../context/AuthContext';
+import { TechStackButton } from '../../components/TechStackModal';
 
 const ForgotPassword = () => {
   const { forgotPassword, loading } = useAuth();
@@ -83,6 +84,11 @@ const ForgotPassword = () => {
                 {t('auth.backToLogin')}
               </Link>
             </div>
+            
+            {/* Tech Stack Button */}
+            <div className="mt-6 flex justify-center">
+              <TechStackButton />
+            </div>
           </motion.div>
         ) : (
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -106,14 +112,19 @@ const ForgotPassword = () => {
         )}
 
         {!success && (
-          <div className="mt-6 flex justify-center">
+          <div className="mt-6">
             <Link
               to="/login"
-              className="flex items-center text-sm font-medium text-blue-600 hover:text-blue-800"
+              className="flex items-center justify-center text-sm font-medium text-blue-600 hover:text-blue-800"
             >
               <ArrowLeft className="h-4 w-4 mr-1" />
               {t('auth.backToLogin')}
             </Link>
+            
+            {/* Tech Stack Button */}
+            <div className="mt-6 flex justify-center">
+              <TechStackButton />
+            </div>
           </div>
         )}
       </div>

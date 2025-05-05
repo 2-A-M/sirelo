@@ -62,6 +62,60 @@
     "darkMode": "Dark Mode",
     "lightMode": "Light Mode"
   },
+  "techStack": {
+    "title": "Tech Stack Explorer",
+    "subtitle": "Discover the technologies powering this application",
+    "viewButton": "Tech Stack Explorer",
+    "categories": {
+      "all": "All",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "database": "Database",
+      "tools": "Tools"
+    },
+    "technologies": {
+      "react": {
+        "name": "React",
+        "description": "A JavaScript library for building user interfaces"
+      },
+      "typescript": {
+        "name": "TypeScript",
+        "description": "Strongly typed programming language that builds on JavaScript"
+      },
+      "tailwind": {
+        "name": "Tailwind CSS",
+        "description": "A utility-first CSS framework for rapid UI development"
+      },
+      "framerMotion": {
+        "name": "Framer Motion",
+        "description": "A production-ready motion library for React"
+      },
+      "reactRouter": {
+        "name": "React Router",
+        "description": "Declarative routing for React applications"
+      },
+      "laravel": {
+        "name": "Laravel",
+        "description": "PHP web application framework with expressive, elegant syntax"
+      },
+      "php": {
+        "name": "PHP",
+        "description": "Popular general-purpose scripting language for web development"
+      },
+      "postgresql": {
+        "name": "PostgreSQL",
+        "description": "Powerful, open source object-relational database system"
+      },
+      "vite": {
+        "name": "Vite",
+        "description": "Next generation frontend tooling"
+      },
+      "i18next": {
+        "name": "i18next",
+        "description": "Internationalization framework for JavaScript"
+      }
+    }
+  },
   "common": {
     "submit": "Submit",
     "cancel": "Cancel",

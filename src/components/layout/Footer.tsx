@@ -1,4 +1,6 @@
 import LanguageSwitcher from '../LanguageSwitcher';
+import { Github } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface FooterProps {
   className?: string;
@@ -7,7 +9,35 @@ interface FooterProps {
 export const Footer = ({ className = '' }: FooterProps) => {
 
   return (
-    <div className={`${className}`}>
+    <div className={`${className} relative`}>
+      {/* GitHub link */}
+      <motion.a
+        href="https://github.com/2-A-M"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-gray-800 text-gray-200 hover:text-white hover:bg-gray-700 transition-all"
+        whileHover={{ 
+          scale: 1.1,
+          boxShadow: '0 0 8px rgba(59, 130, 246, 0.6)'
+        }}
+        initial={{ opacity: 0.8 }}
+        animate={{ 
+          opacity: [0.8, 1, 0.8],
+          boxShadow: [
+            '0 0 0px rgba(59, 130, 246, 0)',
+            '0 0 4px rgba(59, 130, 246, 0.3)',
+            '0 0 0px rgba(59, 130, 246, 0)'
+          ]
+        }}
+        transition={{ 
+          duration: 3,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      >
+        <Github size={20} />
+      </motion.a>
+
       {/* Language switcher */}
       <div className="flex justify-center mb-4">
         <LanguageSwitcher />
@@ -26,7 +56,7 @@ export const Footer = ({ className = '' }: FooterProps) => {
           <span>by</span>
         </div>
         <a 
-          href="https://github.com/2-A-M" 
+          href="https://2am.app" 
           target="_blank" 
           rel="noopener noreferrer" 
           className="relative inline-block transition-all duration-300 text-sm"
