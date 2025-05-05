@@ -15,14 +15,16 @@ export const Footer = ({ className = '' }: FooterProps) => {
       
       {/* Rodapé de créditos */}
       <div className="text-gray-600 dark:text-gray-300 text-xs font-light mt-1 md:mt-2 text-center flex justify-center items-center flex-wrap">
+        {/* Container for animated elements to prevent layout shifts */}
         <div className="inline-flex items-center">
           <span>Created with</span> 
           <span 
             id="heart-emoji"
-            className="transition-all duration-300 inline-block mx-1"
+            className="transition-all duration-300 inline-block"
+            style={{ width: '18px', height: '18px', display: 'inline-flex', justifyContent: 'center', alignItems: 'center' }}
           >🤍</span>
+          <span>by</span>
         </div>
-        <span className="mx-1">by</span>
         <a 
           href="https://github.com/2-A-M" 
           target="_blank" 
@@ -49,12 +51,8 @@ const activateHeartEffect = (element: HTMLElement) => {
   if (heartEmoji) {
     heartEmoji.innerHTML = '❤️';
     heartEmoji.style.filter = 'drop-shadow(0 0 8px rgba(239, 68, 68, 1.0))';
-    heartEmoji.style.fontSize = '18px';
     
-    // Sem transformação inicial - a animação vai cuidar de tudo
-    heartEmoji.style.transform = '';
-    
-    // Adiciona animação pulsante com velocidade mais lenta
+    // We keep the container the same size but animate the content inside
     heartEmoji.style.animation = 'heartbeat 0.8s infinite';
     
     // Adiciona keyframes dinamicamente se ainda não existirem
@@ -66,7 +64,7 @@ const activateHeartEffect = (element: HTMLElement) => {
           0% { transform: scale(1.2); filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.8)); }
           15% { transform: scale(1.5); filter: drop-shadow(0 0 10px rgba(239, 68, 68, 1.0)); }
           30% { transform: scale(1.3); filter: drop-shadow(0 0 9px rgba(239, 68, 68, 0.9)); }
-          50% { transform: scale(1.7); filter: drop-shadow(0 0 12px rgba(239, 68, 68, 1.0)); }
+          50% { transform: scale(1.5); filter: drop-shadow(0 0 12px rgba(239, 68, 68, 1.0)); }
           75% { transform: scale(1.3); filter: drop-shadow(0 0 9px rgba(239, 68, 68, 0.9)); }
           100% { transform: scale(1.2); filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.8)); }
         }
@@ -85,7 +83,6 @@ const deactivateHeartEffect = (element: HTMLElement) => {
     heartEmoji.style.filter = '';
     heartEmoji.style.transform = '';
     heartEmoji.style.animation = '';
-    heartEmoji.style.fontSize = '';
   }
 };
 
