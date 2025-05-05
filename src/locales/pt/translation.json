@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Sistema de Login",
-    "welcome": "Bem-vindo à nossa aplicação!"
+    "welcome": "Bem-vindo!"
   },
   "auth": {
     "login": "Faça login na sua conta para continuar",
