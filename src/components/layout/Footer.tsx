@@ -37,7 +37,7 @@ export const Footer = ({ className = '' }: FooterProps) => {
           }}
           onMouseEnter={(e) => activateHeartEffect(e.currentTarget)}
           onMouseLeave={(e) => deactivateHeartEffect(e.currentTarget)}
-        >Arthur "2AM" Acha</a>
+        >2AM</a>
       </div>
     </div>
   );
