@@ -8,13 +8,13 @@ export interface EmailTemplate {
 const emailTemplates = {
   resetPassword: {
     en: {
-      subject: "Reset Your Password",
+      subject: "Reset Password",
       body: `
-        <h1>Reset Your Password</h1>
+        <h1>Reset Password</h1>
         <p>Hello,</p>
-        <p>You've requested to reset your password. Please click on the link below to create a new password:</p>
+        <p>A password reset has been requested. Please click on the link below to create a new password:</p>
         <p><a href="{{resetLink}}">Reset Password</a></p>
-        <p>If you didn't request this, you can safely ignore this email.</p>
+        <p>If this wasn't requested, this email can be safely ignored.</p>
         <p>This link will expire in 24 hours.</p>
         <p>Best regards,</p>
         <p>The Support Team</p>
@@ -25,9 +25,9 @@ const emailTemplates = {
       body: `
         <h1>Recuperação de Senha</h1>
         <p>Olá,</p>
-        <p>Você solicitou a recuperação da sua senha. Clique no link abaixo para criar uma nova senha:</p>
+        <p>Uma recuperação de senha foi solicitada. Clique no link abaixo para criar uma nova senha:</p>
         <p><a href="{{resetLink}}">Redefinir Senha</a></p>
-        <p>Se você não solicitou isso, pode ignorar este e-mail com segurança.</p>
+        <p>Se isso não foi solicitado, este e-mail pode ser ignorado com segurança.</p>
         <p>Este link expira em 24 horas.</p>
         <p>Atenciosamente,</p>
         <p>Equipe de Suporte</p>

@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { LogOut, User } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
