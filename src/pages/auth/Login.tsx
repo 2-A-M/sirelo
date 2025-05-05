@@ -12,6 +12,7 @@ import Input from '../../components/ui/Input';
 import Button from '../../components/ui/Button';
 import Checkbox from '../../components/ui/Checkbox';
 import { useAuth } from '../../context/AuthContext';
+import { TechStackButton } from '../../components/TechStackModal';
 
 const Login = () => {
   const { login, loading } = useAuth();
@@ -122,6 +123,11 @@ const Login = () => {
               {t('auth.signUp')}
             </Link>
           </p>
+        </div>
+        
+        {/* Tech Stack Button */}
+        <div className="mt-6 flex justify-center">
+          <TechStackButton />
         </div>
       </div>
     </AuthLayout>

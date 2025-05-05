@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../context/AuthContext';
 import Button from '../../components/ui/Button';
 import Footer from '../../components/layout/Footer';
+import TechStack from '../../components/dashboard/TechStack';
 
 const Dashboard = () => {
   const { user, logout } = useAuth();
@@ -87,6 +88,9 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div>
+              
+              {/* Tech Stack Component */}
+              <TechStack />
             </div>
           </div>
         </motion.div>
