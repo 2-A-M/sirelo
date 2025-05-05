@@ -88,7 +88,7 @@ const Button = ({
           ></path>
         </motion.svg>
       ) : icon ? (
-        <span className="mr-2">{icon}</span>
+        <span className="mr-3">{icon}</span>
       ) : null}
       {children}
     </motion.button>

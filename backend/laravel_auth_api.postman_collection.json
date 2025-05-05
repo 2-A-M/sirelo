@@ -24,7 +24,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"Test User\",\n    \"email\": \"test@example.com\",\n    \"password\": \"password123\",\n    \"password_confirmation\": \"password123\"\n}"
+					"raw": "{\n    \"name\": \"Test User\",\n    \"email\": \"ex@email.com\",\n    \"password\": \"password123\",\n    \"password_confirmation\": \"password123\"\n}"
 				},
 				"url": {
 					"raw": "{{baseUrl}}/register",
@@ -76,7 +76,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"test@example.com\",\n    \"password\": \"password123\"\n}"
+					"raw": "{\n    \"email\": \"ex@email.com\",\n    \"password\": \"password123\"\n}"
 				},
 				"url": {
 					"raw": "{{baseUrl}}/login",
@@ -167,7 +167,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"test@example.com\"\n}"
+					"raw": "{\n    \"email\": \"ex@email.com\"\n}"
 				},
 				"url": {
 					"raw": "{{baseUrl}}/forgot-password",
@@ -200,7 +200,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"token\": \"PASTE_TOKEN_FROM_EMAIL_HERE\",\n    \"email\": \"test@example.com\",\n    \"password\": \"newpassword123\",\n    \"password_confirmation\": \"newpassword123\"\n}"
+					"raw": "{\n    \"token\": \"PASTE_TOKEN_FROM_EMAIL_HERE\",\n    \"email\": \"ex@email.com\",\n    \"password\": \"newpassword123\",\n    \"password_confirmation\": \"newpassword123\"\n}"
 				},
 				"url": {
 					"raw": "{{baseUrl}}/reset-password",

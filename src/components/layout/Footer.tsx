@@ -1,3 +1,4 @@
+import LanguageSwitcher from '../LanguageSwitcher';
 
 interface FooterProps {
   className?: string;
@@ -7,6 +8,11 @@ export const Footer = ({ className = '' }: FooterProps) => {
 
   return (
     <div className={`${className}`}>
+      {/* Language switcher */}
+      <div className="flex justify-center mb-4">
+        <LanguageSwitcher />
+      </div>
+      
       {/* Rodapé de créditos */}
       <div className="text-gray-600 dark:text-gray-300 text-xs font-light mt-1 md:mt-2 text-center flex justify-center items-center flex-wrap">
         <div className="inline-flex items-center">
