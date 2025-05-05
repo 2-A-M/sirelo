@@ -136,9 +136,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     try {
       setLoading(true);
       setError(null);
-      // Pass the current language to the API if your backend supports it
+      // Pass the current language to the API if the backend supports it
       await authService.forgotPassword(email, i18n.language);
-      toast.success(t('auth.forgotPasswordSuccess', 'E-mail de recuperação enviado com sucesso! Só checar seu inbox que você receberá um e-mail com as instruções para redefinir sua senha.'));
+      toast.success(t('auth.forgotPasswordSuccess', 'E-mail de recuperação enviado com sucesso! Verifique a caixa de entrada para instruções sobre como redefinir a senha.'));
     } catch (err: any) {
       // Extract error message
       const errorMessage = err.message || t('auth.forgotPasswordError', 'Erro ao enviar e-mail de recuperação.');
@@ -159,7 +159,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       setLoading(true);
       setError(null);
       await authService.resetPassword(token, email, password, passwordConfirmation);
-      toast.success(t('auth.resetPasswordSuccess', 'Senha redefinida com sucesso! Faça login com sua nova senha.'));
+      toast.success(t('auth.resetPasswordSuccess', 'Senha redefinida com sucesso! Faça login com a nova senha.'));
       navigate('/login');
     } catch (err: any) {
       setError(err.message || t('auth.resetPasswordError', 'Erro ao redefinir a senha.'));
