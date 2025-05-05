@@ -1,20 +1,23 @@
-import { useState } from 'react';
 
 interface FooterProps {
   className?: string;
 }
 
 export const Footer = ({ className = '' }: FooterProps) => {
-  const [isHeartActive, setIsHeartActive] = useState(false);
 
   return (
     <div className={`${className}`}>
       {/* Rodapé de créditos */}
-      <div className="text-gray-600 dark:text-gray-300 text-xs font-light mt-1 md:mt-2 text-center">
-        Created with <span 
-          id="heart-emoji"
-          className="transition-all duration-300 inline-block"
-        >🤍</span> by<a 
+      <div className="text-gray-600 dark:text-gray-300 text-xs font-light mt-1 md:mt-2 text-center flex justify-center items-center flex-wrap">
+        <div className="inline-flex items-center">
+          <span>Created with</span> 
+          <span 
+            id="heart-emoji"
+            className="transition-all duration-300 inline-block mx-1"
+          >🤍</span>
+        </div>
+        <span className="mx-1">by</span>
+        <a 
           href="https://github.com/2-A-M" 
           target="_blank" 
           rel="noopener noreferrer" 
